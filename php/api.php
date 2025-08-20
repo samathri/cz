@@ -5,9 +5,11 @@ ini_set('display_errors', 1);
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-$apiKey = "a6b89693-432a-46c7-a5cf-c8888ce3cd77"; 
+// ✅ Your updated API key
+$apiKey = "14f29a07-57fe-4543-800d-a7fd3dffdca3";
 $url = "https://api.cricapi.com/v1/currentMatches?apikey=$apiKey&offset=0";
 
+// cURL request
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -24,6 +26,7 @@ if ($response === false) {
 
 curl_close($ch);
 
+// Decode JSON
 $jsonData = json_decode($response, true);
 
 if ($jsonData === null) {
@@ -34,9 +37,23 @@ if ($jsonData === null) {
     exit;
 }
 
-// Return full raw response and keys for debugging
+// ✅ API error handling
+if (!isset($jsonData["status"]) || strtolower($jsonData["status"]) !== "success") {
+    echo json_encode([
+        "error" => $jsonData["reason"] ?? "Unknown API error",
+        "status" => $jsonData["status"] ?? "N/A"
+    ]);
+    exit;
+}
+
+// ✅ Filter live matches
+$matches = $jsonData["data"] ?? [];
+$liveMatches = array_filter($matches, function ($match) {
+    return !empty($match["matchStarted"]);
+});
+
+// ✅ Final Output
 echo json_encode([
-    "rawResponse" => $jsonData,
-    "topLevelKeys" => array_keys($jsonData),
-    "dataSample" => isset($jsonData['data']) ? array_slice($jsonData['data'], 0, 3) : []
+    "success" => true,
+    "data" => array_values($liveMatches)
 ]);
