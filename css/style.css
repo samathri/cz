@@ -1,0 +1,183 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f9f9f9;
+    color: #333;
+}
+
+/* Navbar */
+.cz-header {
+    background: #0467BB;
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.cz-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.cz-logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+/* Nav Links */
+.cz-nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.cz-nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Mobile Menu Toggle */
+.cz-menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.cz-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: url('../images/hero.jpg') no-repeat center center/cover;
+    color: white;
+}
+
+.cz-hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+/* Matches Section */
+.cz-matches, .cz-blog {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.cz-matches h2, .cz-blog h2 {
+    margin-bottom: 20px;
+    color: #0467BB;
+}
+
+.cz-live-matches, .cz-blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* MATCH CARD DESIGN */
+.cz-match-card {
+    background: #eaf6ff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cz-match-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.cz-tournament {
+    font-weight: bold;
+    flex: 1;
+    color: #223;
+}
+
+.cz-time {
+    font-size: 13px;
+    color: #555;
+}
+
+.cz-live-badge {
+    background-color: #22c55e;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Team row */
+.cz-team-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-top: 1px solid #d3e9f8;
+}
+
+.cz-team-name {
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.cz-score {
+    font-weight: bold;
+    color: #0f9d58;
+}
+
+/* BLOG POST CARDS (unchanged) */
+.cz-post-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+.cz-footer {
+    text-align: center;
+    background: #0467BB;
+    color: white;
+    padding: 15px;
+    margin-top: 30px;
+}
+
+/* ----------- RESPONSIVE ----------- */
+@media (max-width: 768px) {
+    .cz-nav-links {
+        position: absolute;
+        top: 65px;
+        right: 0;
+        background: #0467BB;
+        flex-direction: column;
+        width: 200px;
+        display: none;
+        padding: 15px;
+    }
+
+    .cz-nav-links.active {
+        display: flex;
+    }
+
+    .cz-menu-toggle {
+        display: block;
+    }
+}
