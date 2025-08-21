@@ -1,0 +1,8 @@
+{
+    "name": "sama/cricket-zone",
+    "description": "Backend for Cricket Zone live cricket scores and odds",
+    "require": {
+        "guzzlehttp/guzzle": "^7.9"
+    },
+    "license": "MIT"
+}

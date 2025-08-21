@@ -49,8 +49,9 @@ if (!isset($jsonData["status"]) || strtolower($jsonData["status"]) !== "success"
 // ✅ Filter live matches
 $matches = $jsonData["data"] ?? [];
 $liveMatches = array_filter($matches, function ($match) {
-    return !empty($match["matchStarted"]);
+    return isset($match["matchStarted"]) && $match["matchStarted"];
 });
+
 
 // ✅ Final Output
 echo json_encode([
