@@ -3,7 +3,7 @@
         'name' => 'sama/cricket-zone',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '33cd943f3ad38a5a57d64fd04ec88e37260194c0',
+        'reference' => 'c322ba624a52d8ee11d4e446cdbcb266a34657f0',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -94,7 +94,7 @@
         'sama/cricket-zone' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '33cd943f3ad38a5a57d64fd04ec88e37260194c0',
+            'reference' => 'c322ba624a52d8ee11d4e446cdbcb266a34657f0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

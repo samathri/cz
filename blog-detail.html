@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title id="dynamic-title">Cricket Zone - Live Scores & Updates</title>
+    <meta name="description" id="dynamic-desc" content="{description}" />
+<meta property="og:title" id="dynamic-og-title" content="{title}" />
+<meta property="og:description" id="dynamic-og-desc" content="{description}" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+      /* Optional: Smooth scrolling for anchor links */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="cz-header" role="banner">
+        <nav class="cz-navbar" role="navigation" aria-label="Primary Navigation">
+            <div class="cz-logo" aria-label="Cricket Zone logo">🏏 Cricket Zone</div>
+
+            <!-- Hamburger for mobile -->
+            <button class="cz-menu-toggle" id="cz-menu-toggle" aria-expanded="false" aria-controls="cz-nav-links" aria-label="Toggle navigation menu">
+                ☰
+            </button>
+
+            <ul class="cz-nav-links" id="cz-nav-links" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                <li role="none"><a href="#matches-section" role="menuitem">Matches</a></li>
+                <li role="none"><a href="#odds-section" role="menuitem">Odds</a></li>
+                <li role="none"><a href="#news-section" role="menuitem">News</a></li>
+                <li role="none"><a href="#contact-section" role="menuitem">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Blog Detail -->
+    <main class="cz-blog-detail" id="blog-detail" role="main">
+      <div class="cz-blog-image-wrapper">
+        <img id="blog-image" src="" alt="Match Image" />
+      </div>
+      <h1 id="blog-title" class="cz-blog-title"></h1>
+      <time id="blog-time" class="cz-blog-time"></time>
+      <div id="blog-content" class="cz-blog-text"></div>
+
+      <a href="index.html" class="cz-back-btn">← Back to Blog</a>
+    </main>
+
+    
+  </div>
+  <!-- FOOTER -->
+    <footer class="cz-footer">
+
+        <p class="footer-follow">FOLLOW US ON SOCIAL</p>
+
+        <div class="footer-social">
+            <a href="#" aria-label="Twitter" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="Telegram" class="social-icon telegram"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+
+        <nav class="footer-nav">
+    <a href="about.html">About us</a>
+    <a href="index.html#contact-section" role="menuitem">Contact us</a>
+    <a href="privacy-policy.html">Privacy & Policy</a>
+    <a href="terms-conditions.html">Terms & Conditions</a>
+</nav>
+
+
+        <p class="footer-copy">© 2025 Cricket Zone. All rights reserved.</p>
+    </footer>
+
+  <!-- Blog Detail Script -->
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+const matchId = urlParams.get("id");
+
+if (matchId) {
+  const matchData = JSON.parse(localStorage.getItem(`match_${matchId}`));
+  if (matchData) {
+    const title = `${matchData.team1} vs ${matchData.team2} - ${matchData.tournament} | Cricket Zone`;
+    const description = `${matchData.intro} ${matchData.toss} ${matchData.odds}`;
+
+    // Update meta tags & title
+    document.title = title;
+    document.getElementById("dynamic-title").textContent = title;
+    document.getElementById("dynamic-desc").setAttribute("content", description);
+    document.getElementById("dynamic-og-title").setAttribute("content", title);
+    document.getElementById("dynamic-og-desc").setAttribute("content", description);
+
+    // Update blog page content
+    document.getElementById("blog-title").textContent = title;
+    document.getElementById("blog-time").textContent = matchData.date;
+
+    const contentEl = document.getElementById("blog-content");
+    contentEl.innerHTML = ""; // Clear existing content
+
+    const para1 = document.createElement("p");
+    para1.textContent = matchData.intro;
+
+    const para2 = document.createElement("p");
+    para2.textContent = `${matchData.toss} ${matchData.odds}`;
+
+    contentEl.appendChild(para1);
+    contentEl.appendChild(para2);
+
+    const imageEl = document.getElementById("blog-image");
+    imageEl.src = matchData.imageFile || "images/matches/default-cricket.jpg";
+    imageEl.onerror = () => {
+      imageEl.src = "images/matches/default-cricket.jpg";
+    };
+  } else {
+    document.getElementById("blog-detail").innerHTML = `<p>Match data not found.</p>`;
+  }
+} else {
+  document.getElementById("blog-detail").innerHTML = `<p>No match ID provided.</p>`;
+}
+
+  </script>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

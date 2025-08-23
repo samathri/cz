@@ -1,0 +1,3 @@
+[23-Aug-2025 04:05:40 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cz\php\api.php:76) in C:\xampp\htdocs\cz\php\api.php on line 82
+[23-Aug-2025 04:05:41 Europe/Berlin] PHP Warning:  file_get_contents(https://www.googleapis.com/customsearch/v1?key=YOUR_GOOGLE_API_KEY&amp;cx=YOUR_SEARCH_ENGINE_ID&amp;searchType=image&amp;q=cricket+match+scene&amp;num=1): Failed to open stream: HTTP request failed! HTTP/1.1 400 Bad Request
+ in C:\xampp\htdocs\cz\php\api.php on line 88

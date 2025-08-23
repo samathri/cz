@@ -1,4 +1,4 @@
-/* General Reset */
+/* ===== GENERAL RESET & BASE STYLES ===== */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +11,73 @@ body {
     color: #333;
 }
 
-/* Navbar */
+/* The main content area should take all available space */
+main,
+.cz-main-content {
+    flex: 1 0 auto;
+    /* Grow and shrink but don’t force footer */
+}
+
+/* Footer should not shrink and stay at bottom */
+.cz-footer {
+    flex-shrink: 0;
+}
+
+/* ===== TYPOGRAPHY: HEADER & TITLE STYLES (Consistent across site) ===== */
+h1,
+.cz-hero-content h1 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #0467BB;
+    /* Primary blue color */
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h2,
+.cz-heading,
+.cz-matches h2,
+.cz-blog h2,
+.cz-contact h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0467BB;
+    margin-bottom: 1.25rem;
+}
+
+h3,
+.cz-post-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0467BB;
+    margin-bottom: 0.5rem;
+}
+
+/* Paragraphs */
+p,
+.cz-hero-content p,
+.cz-post-card p,
+.cz-blog-text {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Links */
+a {
+    color: #0467BB;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+    color: #034d93;
+    outline: none;
+}
+
+/* ===== HEADER & NAVBAR ===== */
 .cz-header {
     background: #0467BB;
     padding: 15px 30px;
@@ -32,7 +98,6 @@ body {
     font-weight: bold;
 }
 
-/* Nav Links */
 .cz-nav-links {
     list-style: none;
     display: flex;
@@ -41,54 +106,135 @@ body {
 
 .cz-nav-links li a {
     color: white;
-    text-decoration: none;
     font-weight: bold;
 }
 
-/* Mobile Menu Toggle */
 .cz-menu-toggle {
     display: none;
     font-size: 1.8rem;
     cursor: pointer;
 }
 
-/* Hero Section */
+#cz-live-matches .cz-match-card {
+    margin-bottom: 1rem;
+    /* Adds vertical space between cards */
+}
+
+
+/* Responsive Nav */
+@media (max-width: 768px) {
+    .cz-nav-links {
+        position: absolute;
+        top: 65px;
+        right: 0;
+        background: #0467BB;
+        flex-direction: column;
+        width: 200px;
+        display: none;
+        padding: 15px;
+    }
+
+    .cz-nav-links.active {
+        display: flex;
+    }
+
+    .cz-menu-toggle {
+        display: block;
+    }
+}
+
+/* ===== HERO SECTION ===== */
 .cz-hero {
-    text-align: center;
-    padding: 60px 20px;
+    position: relative;
     background: url('../images/cricket.jpg') no-repeat center center/cover;
     color: white;
+    min-height: 400px;
 }
 
-.cz-hero-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+.cz-hero-overlay {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    padding: 60px 20px;
 }
 
-/* Matches Section */
-.cz-matches, .cz-blog {
+.cz-hero-content {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+.cz-hero-content p {
+    color: #ddd;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Highlight Match Card in Hero */
+.cz-highlight-match-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;
+    max-width: 400px;
+    margin: 0 auto;
+    backdrop-filter: blur(4px);
+}
+
+.cz-highlight-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.cz-highlight-teams {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.cz-highlight-status {
+    font-size: 0.95rem;
+    color: #e0e0e0;
+}
+
+/* ===== MATCHES PAGE ===== */
+.cz-matches,
+.cz-blog {
     padding: 40px 20px;
     max-width: 1000px;
     margin: auto;
 }
 
-.cz-matches h2, .cz-blog h2 {
-    margin-bottom: 20px;
-    color: #0467BB;
+.cz-matches-row {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 5%;
+    margin-bottom: 40px;
 }
 
-.cz-live-matches, .cz-blog-posts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+.cz-matches-col {
+    flex: 1 1 65%;
+    min-width: 300px;
 }
 
-/* MATCH CARD DESIGN */
+.cz-matches-col-scheduled {
+    flex: 1 1 30%;
+    min-width: 250px;
+}
+
+/* Match Cards */
 .cz-match-card {
     background: #eaf6ff;
     border-radius: 10px;
     padding: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -110,7 +256,6 @@ body {
     color: #223;
 }
 
-
 .cz-time {
     font-size: 13px;
     color: #555;
@@ -125,8 +270,7 @@ body {
     margin-left: 10px;
 }
 
-
-/* Team row */
+/* Team Row */
 .cz-team-row {
     display: flex;
     justify-content: space-between;
@@ -145,15 +289,232 @@ body {
     color: #0f9d58;
 }
 
-/* BLOG POST CARDS (unchanged) */
-.cz-post-card {
-    background: #fff;
+/* Upcoming Matches Box */
+.cz-upcoming-box {
+    background: #f0f8ff;
+    border: 2px solid #cce5ff;
+    border-radius: 10px;
     padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    max-height: 350px !important;
+    overflow-y: auto;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
 }
 
-/* Footer */
+.cz-upcoming-box::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari and Opera */
+}
+
+.cz-upcoming-item {
+    padding: 10px 5px;
+    border-bottom: 1px solid #e0efff;
+}
+
+.cz-upcoming-item:last-child {
+    border-bottom: none;
+}
+
+.cz-upcoming-title {
+    font-weight: bold;
+    font-size: 14px;
+    color: #222;
+}
+
+.cz-upcoming-time {
+    font-size: 13px;
+    color: #666;
+}
+
+#cz-upcoming-matches .cz-match-card {
+    margin-bottom: 15px;
+}
+
+#cz-upcoming-matches .cz-match-card:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive Stack for Matches */
+@media (max-width: 768px) {
+    .cz-matches-row {
+        flex-direction: column;
+    }
+
+    .cz-upcoming-box {
+        max-height: 350px !important;
+    }
+}
+
+/* ===== BLOG PAGE ===== */
+.cz-blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.cz-post-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.cz-post-card:hover {
+    transform: translateY(-5px);
+}
+
+.cz-post-card h3 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.cz-post-card time {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Blog Detail Page */
+.cz-blog-detail {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.cz-blog-image-wrapper {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#blog-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cz-blog-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #0467BB;
+    text-align: center;
+}
+
+.cz-blog-time {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cz-blog-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.cz-back-btn {
+    display: block;
+    margin: 0 auto 50px;
+    width: fit-content;
+    padding: 10px 20px;
+    background-color: #0467BB;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cz-back-btn:hover {
+    background-color: #034d93;
+}
+
+/* ===== CONTACT PAGE ===== */
+.cz-contact {
+    max-width: 600px;
+    margin: 50px auto 80px;
+    padding: 0 20px;
+    color: #0467BB;
+}
+
+.cz-contact h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #0467BB;
+}
+
+.cz-contact-form {
+    background: #c3d3e0;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgb(0 102 204 / 0.15);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 1rem;
+    color: #034d93;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px 12px;
+    border: 2px solid #5a95d4;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #0467BB;
+    background-color: #e6f0ff;
+}
+
+.cz-btn-submit {
+    display: block;
+    width: 100%;
+    background-color: #ffffff;
+    color: #0467BB;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cz-btn-submit:hover,
+.cz-btn-submit:focus {
+    background-color: #0467BB;
+    color: #ffffff;
+    outline: none;
+}
+
+/* ===== FOOTER ===== */
 .cz-footer {
     text-align: center;
     background: #0467BB;
@@ -162,24 +523,91 @@ body {
     margin-top: 30px;
 }
 
-/* ----------- RESPONSIVE ----------- */
-@media (max-width: 768px) {
-    .cz-nav-links {
-        position: absolute;
-        top: 65px;
-        right: 0;
-        background: #0467BB;
+.footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #6b0000;
+    font-family: "Georgia", serif;
+}
+
+.footer-logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.footer-follow {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+    letter-spacing: 0.05em;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.footer-social a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #f7f7f7;
+    color: #666;
+    font-size: 1.1rem;
+    text-decoration: none;
+    box-shadow: 0 0 8px rgb(0 0 0 / 0.05);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer-social a:hover {
+    background-color: #666;
+    color: white;
+}
+
+.footer-nav {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    font-weight: 600;
+}
+
+.footer-nav a {
+    color: #000;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: #ffffff;
+}
+
+.footer-copy {
+    font-size: 0.9rem;
+    color: #ffffff;
+    font-weight: 600;
+    user-select: text;
+    letter-spacing: 0.02em;
+}
+
+/* Footer Responsive */
+@media (max-width: 480px) {
+    .footer-nav {
         flex-direction: column;
-        width: 200px;
-        display: none;
-        padding: 15px;
-    }
-
-    .cz-nav-links.active {
-        display: flex;
-    }
-
-    .cz-menu-toggle {
-        display: block;
+        gap: 12px;
     }
 }

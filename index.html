@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Cricket Zone - Live Scores & Updates</title>
+    <title id="dynamic-title">Cricket Zone - Live Scores & Updates</title>
+    <meta name="description" id="dynamic-desc"
+        content="Stay updated with real-time cricket match scores, odds, and highlights." />
+    <meta property="og:title" id="dynamic-og-title" content="Cricket Zone - Live Scores & Updates" />
+    <meta property="og:description" id="dynamic-og-desc"
+        content="Live cricket match odds and updates at Cricket Zone." />
+
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        /* Optional: Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
+
 <body>
 
     <!-- HEADER -->
@@ -14,49 +29,121 @@
             <div class="cz-logo" aria-label="Cricket Zone logo">🏏 Cricket Zone</div>
 
             <!-- Hamburger for mobile -->
-            <button class="cz-menu-toggle" id="cz-menu-toggle" aria-expanded="false" aria-controls="cz-nav-links" aria-label="Toggle navigation menu">
+            <button class="cz-menu-toggle" id="cz-menu-toggle" aria-expanded="false" aria-controls="cz-nav-links"
+                aria-label="Toggle navigation menu">
                 ☰
             </button>
 
             <ul class="cz-nav-links" id="cz-nav-links" role="menubar">
-                <li role="none"><a href="#" role="menuitem">Home</a></li>
-                <li role="none"><a href="#" role="menuitem">Matches</a></li>
-                <li role="none"><a href="#" role="menuitem">Odds</a></li>
-                <li role="none"><a href="#" role="menuitem">Blog</a></li>
-                <li role="none"><a href="#" role="menuitem">Contact</a></li>
+                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                <li role="none"><a href="#matches-section" role="menuitem">Matches</a></li>
+                <li role="none"><a href="#odds-section" role="menuitem">Odds</a></li>
+                <li role="none"><a href="#news-section" role="menuitem">News</a></li>
+                <li role="none"><a href="#contact-section" role="menuitem">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- HERO SECTION -->
-    <section class="cz-hero" role="region" aria-label="Hero Section">
-        <div class="cz-hero-content">
-            <h1>Live Cricket Scores & Odds</h1>
-            <p>Stay updated with real-time cricket match scores, odds, and highlights.</p>
+    <section class="cz-hero" role="region" aria-label="Hero Section" id="hero-section">
+        <div class="cz-hero-overlay">
+            <div class="cz-hero-content">
+                <h1>🔥 Live Cricket Action!</h1>
+                <p>Catch the excitement of live matches, odds, and real-time updates.</p>
+
+                <!-- Highlight Match Card -->
+                <div class="cz-highlight-match-card" id="cz-highlight-card">
+                    <div class="cz-highlight-header">
+                        <span id="cz-highlight-tournament">Loading...</span>
+                        <span id="cz-highlight-time" class="cz-highlight-time">⏳</span>
+                    </div>
+                    <div class="cz-highlight-teams">
+                        <div id="cz-highlight-team1" class="cz-highlight-team">Team A</div>
+                        <span>vs</span>
+                        <div id="cz-highlight-team2" class="cz-highlight-team">Team B</div>
+                    </div>
+                    <div id="cz-highlight-status" class="cz-highlight-status">🏏 Match info loading...</div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- LIVE MATCHES -->
-    <section class="cz-matches" role="region" aria-label="Live Matches Section">
-        <h2>🔥 Live Matches</h2>
-        <div id="cz-live-matches" class="cz-live-matches" aria-live="polite" aria-atomic="true">
-            <p>Loading live scores...</p>
+    <!-- MATCHES SECTION -->
+    <section class="cz-matches-row" role="region" aria-label="Live and Upcoming Matches" id="matches-section">
+        <!-- Live Matches Column -->
+        <div class="cz-matches-col">
+            <h2 class="cz-heading">🔥 Live Matches</h2>
+            <div id="cz-live-matches" class="cz-live-matches" aria-live="polite" aria-atomic="true">
+                <p>Loading live scores...</p>
+            </div>
+        </div>
+
+        <!-- Scheduled Matches Column -->
+        <div class="cz-matches-col-scheduled" id="odds-section">
+            <h2 class="cz-heading"> 📅 Upcoming Matches</h2>
+            <div id="cz-upcoming-matches" class="cz-upcoming-box" aria-live="polite" aria-atomic="true">
+                <p>Loading upcoming matches...</p>
+            </div>
         </div>
     </section>
 
-    <!-- BLOG / NEWS -->
-    <section class="cz-blog" role="region" aria-label="Latest News and Updates">
-        <h2>📰 Latest News & Updates</h2>
+    <!-- NEWS SECTION -->
+    <section class="cz-blog" role="region" aria-label="Latest News and Updates" id="news-section">
+        <h2 style="text-align: center;">📰 Latest News & Updates</h2>
+
         <div id="cz-blog-posts" class="cz-blog-posts">
             <p>No posts yet.</p>
         </div>
     </section>
 
+    <!-- CONTACT US -->
+    <section class="cz-contact" role="region" aria-label="Contact Us Section" tabindex="-1" id="contact-section">
+        <h2>📞 Contact Us</h2>
+        <form id="contact-form" class="cz-contact-form" action="#" method="post" novalidate>
+            <div class="form-group">
+                <label for="contact-name">Name</label>
+                <input type="text" id="contact-name" name="name" placeholder="Your full name" required />
+            </div>
+
+            <div class="form-group">
+                <label for="contact-email">Email</label>
+                <input type="email" id="contact-email" name="email" placeholder="Your email address" required />
+            </div>
+
+            <div class="form-group">
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" name="message" rows="5" placeholder="Write your message here..."
+                    required></textarea>
+            </div>
+
+            <button type="submit" class="cz-btn-submit">Send Message</button>
+        </form>
+    </section>
+
     <!-- FOOTER -->
-    <footer class="cz-footer" role="contentinfo">
-        <p>© 2025 Cricket Zone. All rights reserved.</p>
+    <footer class="cz-footer">
+
+        <p class="footer-follow">FOLLOW US ON SOCIAL</p>
+
+        <div class="footer-social">
+            <a href="#" aria-label="Twitter" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="Telegram" class="social-icon telegram"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+
+        <nav class="footer-nav">
+            <a href="about.html">About us</a>
+            <a href="privacy-policy.html">Privacy & Policy</a>
+            <a href="terms-conditions.html">Terms & Conditions</a>
+        </nav>
+
+
+        <p class="footer-copy">© 2025 Cricket Zone. All rights reserved.</p>
     </footer>
 
     <script src="js/script.js"></script>
 </body>
+
 </html>
