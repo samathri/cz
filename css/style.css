@@ -514,6 +514,50 @@ a:focus {
     outline: none;
 }
 
+/* Error message style */
+.error-message {
+  color: #E74C3C;
+  font-size: 0.9em;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+/* Highlight invalid inputs */
+input.invalid, textarea.invalid {
+  border: 2px solid #E74C3C;
+  background-color: #FFE6E6;
+}
+
+
+/* Success message popup container centered */
+#success-message {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #4BB543; /* Beautiful green */
+  color: white;
+  padding: 20px 35px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  font-size: 18px;
+  font-weight: 700;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  max-width: 90%;
+  text-align: center;
+  user-select: none;
+}
+
+/* Show the popup */
+#success-message.show {
+  display: block;
+  opacity: 1;
+}
+
+
 /* ===== FOOTER ===== */
 .cz-footer {
     text-align: center;

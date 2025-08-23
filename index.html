@@ -99,24 +99,30 @@
     <!-- CONTACT US -->
     <section class="cz-contact" role="region" aria-label="Contact Us Section" tabindex="-1" id="contact-section">
         <h2>📞 Contact Us</h2>
-        <form id="contact-form" class="cz-contact-form" action="#" method="post" novalidate>
-            <div class="form-group">
-                <label for="contact-name">Name</label>
-                <input type="text" id="contact-name" name="name" placeholder="Your full name" required />
-            </div>
+        <form id="contact-form" class="cz-contact-form" action="contact-handler.php" method="post" novalidate>
 
             <div class="form-group">
-                <label for="contact-email">Email</label>
-                <input type="email" id="contact-email" name="email" placeholder="Your email address" required />
-            </div>
+    <label for="contact-name">Name</label>
+    <input type="text" id="contact-name" name="name" placeholder="Your full name" required />
+    <div class="error-message" id="error-name"></div>
+</div>
 
-            <div class="form-group">
-                <label for="contact-message">Message</label>
-                <textarea id="contact-message" name="message" rows="5" placeholder="Write your message here..."
-                    required></textarea>
-            </div>
+<div class="form-group">
+    <label for="contact-email">Email</label>
+    <input type="email" id="contact-email" name="email" placeholder="Your email address" required />
+    <div class="error-message" id="error-email"></div>
+</div>
+
+<div class="form-group">
+    <label for="contact-message">Message</label>
+    <textarea id="contact-message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+    <div class="error-message" id="error-message"></div>
+</div>
+
 
             <button type="submit" class="cz-btn-submit">Send Message</button>
+            <div id="success-message">🎉 Thank you! Your message has been sent.</div>
+
         </form>
     </section>
 
@@ -142,8 +148,8 @@
 
         <p class="footer-copy">© 2025 Cricket Zone. All rights reserved.</p>
     </footer>
-
     <script src="js/script.js"></script>
+
 </body>
 
 </html>

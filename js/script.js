@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     loadHeroHighlight();
-    setInterval(loadHeroHighlight, 120000); // refresh every 2 minutes
+    setInterval(loadHeroHighlight, 60000); // refresh every 2 minutes
 });
 
 // Blog posts function (unchanged)
@@ -306,3 +306,67 @@ function generateBlogPostsFromLiveMatches(liveMatches) {
 
     blogContainer.innerHTML = postsHTML;
 }
+
+  function showSuccessMessage() {
+    const successMsg = document.getElementById('success-message');
+    successMsg.classList.add('show');
+
+    setTimeout(() => {
+      successMsg.classList.remove('show');
+    }, 3000);
+  }
+
+  // Detect URL param status=success to show message
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('status') === 'success') {
+    showSuccessMessage();
+    history.replaceState(null, '', window.location.pathname + window.location.hash);
+  }
+
+
+
+//   contact form validation and submission
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    // Clear previous errors
+    ['name', 'email', 'message'].forEach(id => {
+        document.getElementById('error-' + id).textContent = '';
+        document.getElementById('contact-' + id).classList.remove('invalid');
+    });
+
+    let valid = true;
+
+    // Name validation
+    const nameInput = document.getElementById('contact-name');
+    if (nameInput.value.trim() === '') {
+        document.getElementById('error-name').textContent = 'Please enter your name.';
+        nameInput.classList.add('invalid');
+        valid = false;
+    }
+
+    // Email validation
+    const emailInput = document.getElementById('contact-email');
+    const emailVal = emailInput.value.trim();
+    // Simple email regex for basic validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailVal === '') {
+        document.getElementById('error-email').textContent = 'Please enter your email.';
+        emailInput.classList.add('invalid');
+        valid = false;
+    } else if (!emailPattern.test(emailVal)) {
+        document.getElementById('error-email').textContent = 'Please enter a valid email address.';
+        emailInput.classList.add('invalid');
+        valid = false;
+    }
+
+    // Message validation
+    const messageInput = document.getElementById('contact-message');
+    if (messageInput.value.trim() === '') {
+        document.getElementById('error-message').textContent = 'Please enter your message.';
+        messageInput.classList.add('invalid');
+        valid = false;
+    }
+
+    if (!valid) {
+        event.preventDefault(); // Prevent form submission if invalid
+    }
+});
